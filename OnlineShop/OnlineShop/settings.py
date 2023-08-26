@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'OnlineShopApp',
     'ServicesApp',
+    'BlogApp',
     
 ]
 
@@ -63,7 +64,7 @@ ROOT_URLCONF = 'OnlineShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.getenv('TEMPLATES_DIR_OSA'), os.getenv('TEMPLATES_DIR_SA')],
+        'DIRS': [os.getenv('TEMPLATES_DIR_OSA'), os.getenv('TEMPLATES_DIR_SA'), os.getenv('TEMPLATES_DIR_BA')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

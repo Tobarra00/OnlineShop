@@ -19,6 +19,27 @@ p {
   line-height: 1.75;
 }
 
+.author {
+  text-align: left;
+  font-size: 80%;
+}
+
+.groups {
+  width: 75%;
+  background-color: rgba(24, 64, 8, 0.719);
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+.group-links{
+  color: white;
+}
+.group-links:hover{
+  color: grey;
+}
+
+
 .text-faded {
   color: rgba(255, 255, 255, 0.3);
 }
@@ -277,3 +298,4 @@ ul.errorlist{
   font-style: italic;
   color: red;
 }
+

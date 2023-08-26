@@ -1,0 +1,63 @@
+{% extends 'OnlineShopApp/base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Blog</title>
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+  <div class="groups">
+      Groups: 
+      {% for blog in blogs %}
+          {% for element in blog.group.all %}
+              <a href="{% url 'groups' element.id %}" class="group-links"> {{element.name}} </a>&nbsp;&nbsp;&nbsp;
+             
+          {% endfor %}
+      
+      {% endfor %}
+  </div>
+</section>
+
+{% for blog in blogs %}
+
+<!-- Heading -->
+  <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        {% if blog.image %}
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{blog.image.url}}" alt="">
+        {% endif %}
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">{{blog.title}}</span>
+            <span class="section-heading-upper">{{blog.content}}</span>
+          </h2>
+          <div class="author">
+            Author: {{blog.author}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endfor %}
+
+<section>
+    <div class="groups">
+        Groups: 
+        {% for blog in blogs %}
+            {% for element in blog.group.all %}
+                <a href="{% url 'groups' element.id %}" class="group-links"> {{element.name}} </a>&nbsp;&nbsp;&nbsp;
+               
+            {% endfor %}
+        
+        {% endfor %}
+    </div>
+</section>
+
+
+{% endblock %}
