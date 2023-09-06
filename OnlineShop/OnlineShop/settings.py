@@ -46,7 +46,12 @@ INSTALLED_APPS = [
     'OnlineShopApp',
     'ServicesApp',
     'BlogApp',
-    
+    'ContactApp',
+    'ShopApp',
+    'ShoppingCartApp',
+    'AuthenticationApp',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +69,7 @@ ROOT_URLCONF = 'OnlineShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.getenv('TEMPLATES_DIR_OSA'), os.getenv('TEMPLATES_DIR_SA'), os.getenv('TEMPLATES_DIR_BA')],
+        'DIRS': [os.getenv('TEMPLATES_DIR')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'ShoppingCartApp.context_processor.total_price',
             ],
         },
     },
@@ -109,6 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/authentication/login/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -133,3 +140,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

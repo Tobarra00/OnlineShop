@@ -1,0 +1,71 @@
+<table class='table table-bordered' style='color:white;'>
+    <thead>
+        <tr>
+            <th colspan='3' class='text-center'>
+                Shopping cart
+                {% if request.user.is_authenticated %}
+                <div style='float: right;'>
+                    <a href="{% url 'cart:reset' %}" class='btn btn-sm btn-danger'>Clear</a>
+                </div>
+                
+                {% endif %}
+            </th>
+        </tr>
+        <tr>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if request.user.is_authenticated %}
+            {% if request.session.cart.items %}
+                {% for key, value in request.session.cart.items %}
+                    <tr class='text-center'>
+                        <td>{{value.name}}</td>
+                        <td>{{value.amount}}</td>
+                        <td>
+                            <a href="{% url 'cart:add' value.product_id %}" class='btn btn-sm btn-success'>+</a>
+                            <a href="{% url 'cart:substract' value.product_id %}" class='btn btn-sm btn-success'>-</a>
+                            <a href="{% url 'cart:remove' value.product_id %}" class='btn btn-sm btn-danger'>X</a>
+                            <br>
+                            {{value.price|floatformat:2}} €
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan='3'>
+                        <div class='alert alert-danger text-center'>
+                            Empty
+                        </div>
+                    </td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan='3'>
+                    <div class='alert alert-danger text-center'>
+                        Empty
+                    </div>
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan='3'>
+                {% if request.user.is_authenticated %}
+                Total: {{total_price|floatformat:2}}&nbsp;€
+                    {% if request.session.cart.items %}
+                        <div style='float: right;'>
+                            <a href="{% url 'cart:purchase' %}" class='btn btn-sm btn-success'>Purchase</a>
+                        </div>
+                    {% endif %}
+                {% else %}
+                <p class='alert alert-danger text-center'>You must log in first.</p>
+                {% endif %}
+            </td>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,28 @@
+{% extends 'OnlineShopApp/base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Contact</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+    {% if 'valid' in request.GET %}
+    <div class='contact-form-div'>
+        <p>Info sent successfully</p>
+    </div>
+    {% endif %}
+
+
+
+<div class='contact-form-div'>
+    <form action="" method="POST">{% csrf_token %}
+        <table class='contact-form'>{{c_form.as_table}}</table>
+        <input type="submit" value="Submit" class='centered-submit'>
+    </form>
+</div>
+
+{% endblock %}

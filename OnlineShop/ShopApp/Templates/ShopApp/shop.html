@@ -1,0 +1,47 @@
+{% extends 'OnlineShopApp/base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Shop</title>
+{% endblock %}
+
+{% block authentication %}
+
+<div style='color: white; margin-right: 100px; text-align: right'>
+    {% if user.is_authenticated %}
+        Hello, {{user.username}}. &nbsp;
+        <a href="{% url 'close_session' %}" style='color: white'>Log out</a>
+    {% else %}
+        <a href="{% url 'login' %}" style='color: white'>Log in</a>&nbsp;
+        <a href="{% url 'authentication' %}" style='color: white'>Register</a>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+    <div style='float: right;'>
+        {% include 'SCart/widget.html' %}
+    </div>
+    <div class='row'>
+        {% for product in products %}
+            <div class='col-md-3'>
+                <div class='card' style='margin: 5px 5px'>
+                    
+                    <img src="{{product.image.url}}" alt="" class='card-img-top'>
+                    <div class='card-body' style='text-align: center;'>
+                        <h6 class='card-title'>{{product.name}}</h6>
+                        <p class='card-text' style='color:grey;'>{{product.price}}&nbsp;€</p>
+                    </div>
+                    <div class='card-footer text-center'>
+                        <a href="{% url 'cart:add' product.id %}" class='btn btn-success'>Add to cart</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

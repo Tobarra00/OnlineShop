@@ -17,6 +17,7 @@ h6 {
 
 p {
   line-height: 1.75;
+  color:#ffffff;
 }
 
 .author {
@@ -299,3 +300,24 @@ ul.errorlist{
   color: red;
 }
 
+.contact-form-div{
+  background-color: rgba(24, 64, 8);
+  color: white;
+  width: 50%;
+  margin: auto;
+  margin: 10px auto;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-form{
+  margin: 20px auto;
+}
+
+.centered-submit {
+  display: block;
+  margin: 0 auto; 
+}
