@@ -1,7 +1,9 @@
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from ShoppingCartApp.shopping_cart import ShoppingCart
+from ShoppingCartApp.models import Order, Elements
 from ShopApp import models
+from ShoppingCartApp.context_processor import total_price
 
 # Create your views here.
 
@@ -42,11 +44,20 @@ def reset_cart(request):
 
 @login_required
 def purchase(request):
+    order = Order.objects.create(user=request.user)
     cart = ShoppingCart(request)
-    
+        
     for key, value in cart.cart.items():
-        print(key, value)
+        product_instance = models.Product.objects.get(id=key)
+        item = Elements(product=product_instance,
+                        amount=value['amount'],
+                        user=request.user,
+                        order=order
+                        )
+        item.save()
     
+    order.total = total_price(request)['total_price']
+    order.save()
     cart.reset()
     
     return redirect('shop')
