@@ -1,11 +1,11 @@
 venv/
-ToDo.txt
-
-.env
 __pycache__/
 
-*.png
-*.jpg
-*.webp
 
-*.sqlite3
+.env
+
+
+ToDo.txt
+
+
+

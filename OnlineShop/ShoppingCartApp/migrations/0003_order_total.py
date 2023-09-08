@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='total',
-            field=models.FloatField(default=ShoppingCartApp.context_processor.total_price),
+            field=models.FloatField(default=0),
         ),
     ]
